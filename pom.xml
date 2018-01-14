@@ -96,6 +96,26 @@
 			  <groupId>org.jacoco</groupId>
 			  <artifactId>jacoco-maven-plugin</artifactId>
 			  <version>0.8.0</version>
+			  <configuration>
+                    <skip>${maven.test.skip}</skip>
+                    <output>file</output>
+                    <append>true</append>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>jacoco-initialize</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-site</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
 			</plugin>
 		</plugins>
 	</build>
@@ -138,21 +158,4 @@
 		</pluginRepository>
 	</pluginRepositories>
 	
-	<reporting>
-	    <plugins>
-	      <plugin>
-	        <groupId>org.jacoco</groupId>
-	        <artifactId>jacoco-maven-plugin</artifactId>
-	        <reportSets>
-	          <reportSet>
-	            <reports>
-	              <report>report</report>
-	              <report>abc.html</report>
-	            </reports>
-	          </reportSet>
-	        </reportSets>
-	      </plugin>
-	    </plugins>
-	  </reporting>
-
 </project>
